@@ -7,3 +7,4 @@
 ## Assets
 
 - Bevy icon, which uses the [MIT License](licenses/Bevy_MIT_License.md)
+- Low Poly Weapons Pack by Zsky [CC-BY] via Poly Pizza
