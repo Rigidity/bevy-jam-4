@@ -1,13 +1,9 @@
 #![allow(clippy::type_complexity)]
 
-mod actions;
-mod audio;
 mod loader;
 mod menu;
 mod player;
 
-use crate::actions::ActionsPlugin;
-use crate::audio::InternalAudioPlugin;
 use crate::loader::LoaderPlugin;
 use crate::menu::MenuPlugin;
 use crate::player::PlayerPlugin;
@@ -29,13 +25,8 @@ pub struct GamePlugin;
 
 impl Plugin for GamePlugin {
     fn build(&self, app: &mut App) {
-        app.add_state::<GameState>().add_plugins((
-            LoaderPlugin,
-            MenuPlugin,
-            ActionsPlugin,
-            InternalAudioPlugin,
-            PlayerPlugin,
-        ));
+        app.add_state::<GameState>()
+            .add_plugins((LoaderPlugin, MenuPlugin, PlayerPlugin));
 
         #[cfg(debug_assertions)]
         {
