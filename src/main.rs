@@ -1,6 +1,7 @@
 // Disable console on windows for release builds.
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
+use bevy::asset::AssetMetaCheck;
 use bevy::prelude::*;
 use bevy::window::PrimaryWindow;
 use bevy::winit::WinitWindows;
@@ -10,8 +11,13 @@ use std::io::Cursor;
 use winit::window::Icon;
 
 fn main() {
-    App::new()
-        .insert_resource(Msaa::Off)
+    let mut app = App::new();
+
+    if cfg!(target_arch = "wasm32") {
+        app.insert_resource(AssetMetaCheck::Never);
+    }
+
+    app.insert_resource(Msaa::Off)
         .insert_resource(ClearColor(Color::rgb(0.4, 0.4, 0.4)))
         .add_plugins(DefaultPlugins.set(WindowPlugin {
             primary_window: Some(Window {
