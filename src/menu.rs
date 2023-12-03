@@ -41,7 +41,7 @@ fn setup_menu(mut commands: Commands) {
         MainMenuCamera,
         Camera2dBundle {
             camera_2d: Camera2d {
-                clear_color: ClearColorConfig::Custom(Color::WHITE),
+                clear_color: ClearColorConfig::Custom(Color::rgb(0.1, 0.1, 0.1)),
             },
             ..default()
         },
