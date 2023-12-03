@@ -24,19 +24,24 @@ struct ButtonColors {
 impl Default for ButtonColors {
     fn default() -> Self {
         ButtonColors {
-            normal: Color::rgb(0.15, 0.15, 0.15),
-            hovered: Color::rgb(0.25, 0.25, 0.25),
+            normal: Color::RED,
+            hovered: Color::BLUE,
         }
     }
 }
 
 #[derive(Component)]
-struct Menu;
+struct MainMenuCamera;
+
+#[derive(Component)]
+struct MainMenu;
 
 fn setup_menu(mut commands: Commands) {
-    commands.spawn(Camera2dBundle::default());
+    commands.spawn((MainMenuCamera, Camera2dBundle::default()));
+
     commands
         .spawn((
+            MainMenu,
             NodeBundle {
                 style: Style {
                     width: Val::Percent(100.0),
@@ -48,11 +53,10 @@ fn setup_menu(mut commands: Commands) {
                 },
                 ..default()
             },
-            Menu,
         ))
-        .with_children(|children| {
+        .with_children(|parent| {
             let button_colors = ButtonColors::default();
-            children
+            parent
                 .spawn((
                     ButtonBundle {
                         style: Style {
@@ -121,7 +125,10 @@ fn click_play_button(
     }
 }
 
-fn cleanup_menu(mut commands: Commands, menu: Query<Entity, With<Menu>>) {
+fn cleanup_menu(
+    mut commands: Commands,
+    menu: Query<Entity, Or<(With<MainMenu>, With<MainMenuCamera>)>>,
+) {
     for entity in menu.iter() {
         commands.entity(entity).despawn_recursive();
     }

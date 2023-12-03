@@ -4,6 +4,9 @@ use bevy::prelude::*;
 pub struct PlayerPlugin;
 
 #[derive(Component)]
+struct PlayerCamera;
+
+#[derive(Component)]
 pub struct Player;
 
 impl Plugin for PlayerPlugin {
@@ -14,9 +17,8 @@ impl Plugin for PlayerPlugin {
 
 fn spawn_player(mut commands: Commands) {
     commands
-        .spawn(SpriteBundle {
-            transform: Transform::from_translation(Vec3::new(0., 0., 1.)),
-            ..Default::default()
-        })
-        .insert(Player);
+        .spawn((PlayerCamera, Camera3dBundle::default()))
+        .with_children(|parent| {
+            parent.spawn(Player);
+        });
 }
