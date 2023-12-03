@@ -24,8 +24,8 @@ struct ButtonColors {
 impl Default for ButtonColors {
     fn default() -> Self {
         ButtonColors {
-            normal: Color::RED,
-            hovered: Color::BLUE,
+            normal: Color::rgb(0.9, 0.9, 0.9),
+            hovered: Color::rgb(0.7, 0.7, 0.7),
         }
     }
 }
@@ -68,8 +68,9 @@ fn setup_menu(mut commands: Commands) {
                 .spawn((
                     ButtonBundle {
                         style: Style {
-                            width: Val::Px(140.0),
-                            height: Val::Px(50.0),
+                            width: Val::Px(220.0),
+                            height: Val::Px(70.0),
+                            border: UiRect::all(Val::Px(2.0)),
                             justify_content: JustifyContent::Center,
                             align_items: AlignItems::Center,
                             ..Default::default()
@@ -82,10 +83,10 @@ fn setup_menu(mut commands: Commands) {
                 ))
                 .with_children(|parent| {
                     parent.spawn(TextBundle::from_section(
-                        "Play",
+                        "Play Game",
                         TextStyle {
                             font_size: 40.0,
-                            color: Color::rgb(0.9, 0.9, 0.9),
+                            color: Color::rgb(0.1, 0.1, 0.1),
                             ..default()
                         },
                     ));
