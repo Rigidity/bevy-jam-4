@@ -1,6 +1,6 @@
-use crate::loader::TextureAssets;
-use crate::GameState;
 use bevy::prelude::*;
+
+use crate::GameState;
 
 pub struct MenuPlugin;
 
@@ -33,7 +33,7 @@ impl Default for ButtonColors {
 #[derive(Component)]
 struct Menu;
 
-fn setup_menu(mut commands: Commands, textures: Res<TextureAssets>) {
+fn setup_menu(mut commands: Commands) {
     commands.spawn(Camera2dBundle::default());
     commands
         .spawn((
@@ -77,100 +77,6 @@ fn setup_menu(mut commands: Commands, textures: Res<TextureAssets>) {
                             ..default()
                         },
                     ));
-                });
-        });
-    commands
-        .spawn((
-            NodeBundle {
-                style: Style {
-                    flex_direction: FlexDirection::Row,
-                    align_items: AlignItems::Center,
-                    justify_content: JustifyContent::SpaceAround,
-                    bottom: Val::Px(5.),
-                    width: Val::Percent(100.),
-                    position_type: PositionType::Absolute,
-                    ..default()
-                },
-                ..default()
-            },
-            Menu,
-        ))
-        .with_children(|children| {
-            children
-                .spawn((
-                    ButtonBundle {
-                        style: Style {
-                            width: Val::Px(170.0),
-                            height: Val::Px(50.0),
-                            justify_content: JustifyContent::SpaceAround,
-                            align_items: AlignItems::Center,
-                            padding: UiRect::all(Val::Px(5.)),
-                            ..Default::default()
-                        },
-                        background_color: Color::NONE.into(),
-                        ..Default::default()
-                    },
-                    ButtonColors {
-                        normal: Color::NONE,
-                        ..default()
-                    },
-                    OpenLink("https://bevyengine.org"),
-                ))
-                .with_children(|parent| {
-                    parent.spawn(TextBundle::from_section(
-                        "Made with Bevy",
-                        TextStyle {
-                            font_size: 15.0,
-                            color: Color::rgb(0.9, 0.9, 0.9),
-                            ..default()
-                        },
-                    ));
-                    parent.spawn(ImageBundle {
-                        image: textures.bevy.clone().into(),
-                        style: Style {
-                            width: Val::Px(32.),
-                            ..default()
-                        },
-                        ..default()
-                    });
-                });
-            children
-                .spawn((
-                    ButtonBundle {
-                        style: Style {
-                            width: Val::Px(170.0),
-                            height: Val::Px(50.0),
-                            justify_content: JustifyContent::SpaceAround,
-                            align_items: AlignItems::Center,
-                            padding: UiRect::all(Val::Px(5.)),
-                            ..default()
-                        },
-                        background_color: Color::NONE.into(),
-                        ..Default::default()
-                    },
-                    ButtonColors {
-                        normal: Color::NONE,
-                        hovered: Color::rgb(0.25, 0.25, 0.25),
-                    },
-                    OpenLink("https://github.com/NiklasEi/bevy_game_template"),
-                ))
-                .with_children(|parent| {
-                    parent.spawn(TextBundle::from_section(
-                        "Open source",
-                        TextStyle {
-                            font_size: 15.0,
-                            color: Color::rgb(0.9, 0.9, 0.9),
-                            ..default()
-                        },
-                    ));
-                    parent.spawn(ImageBundle {
-                        image: textures.github.clone().into(),
-                        style: Style {
-                            width: Val::Px(32.),
-                            ..default()
-                        },
-                        ..default()
-                    });
                 });
         });
 }
