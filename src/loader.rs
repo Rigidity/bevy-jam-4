@@ -15,6 +15,6 @@ impl Plugin for LoaderPlugin {
 
 #[derive(AssetCollection, Resource)]
 pub struct ModelAssets {
-    #[asset(path = "models/Low Poly Weapons Pack/Pistol.glb")]
+    #[asset(path = "models/pistol.glb")]
     pub gun: Handle<Scene>,
 }
