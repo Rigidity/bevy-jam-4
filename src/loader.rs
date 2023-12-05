@@ -9,12 +9,9 @@ impl Plugin for LoaderPlugin {
         app.add_loading_state(
             LoadingState::new(GameState::Loading).continue_to_state(GameState::MainMenu),
         )
-        .add_collection_to_loading_state::<_, ModelAssets>(GameState::Loading);
+        .add_collection_to_loading_state::<_, TextureAssets>(GameState::Loading);
     }
 }
 
 #[derive(AssetCollection, Resource)]
-pub struct ModelAssets {
-    #[asset(path = "models/pistol.glb")]
-    pub gun: Handle<Scene>,
-}
+pub struct TextureAssets {}

@@ -1,4 +1,4 @@
-use bevy::{core_pipeline::clear_color::ClearColorConfig, prelude::*};
+use bevy::prelude::*;
 
 use crate::GameState;
 
@@ -37,16 +37,6 @@ struct MainMenuCamera;
 struct MainMenu;
 
 fn setup_menu(mut commands: Commands) {
-    commands.spawn((
-        MainMenuCamera,
-        Camera2dBundle {
-            camera_2d: Camera2d {
-                clear_color: ClearColorConfig::Custom(Color::rgb(0.1, 0.1, 0.1)),
-            },
-            ..default()
-        },
-    ));
-
     commands
         .spawn((
             MainMenu,

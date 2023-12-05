@@ -17,21 +17,19 @@ fn main() {
         app.insert_resource(AssetMetaCheck::Never);
     }
 
-    app.insert_resource(Msaa::Off)
-        .insert_resource(ClearColor(Color::rgb(0.3, 0.6, 0.9)))
-        .add_plugins(DefaultPlugins.set(WindowPlugin {
-            primary_window: Some(Window {
-                title: "Endless Siege".to_string(),
-                canvas: Some("#bevy".to_owned()),
-                fit_canvas_to_parent: true,
-                prevent_default_event_handling: false,
-                ..default()
-            }),
+    app.add_plugins(DefaultPlugins.set(WindowPlugin {
+        primary_window: Some(Window {
+            title: "Endless Siege".to_string(),
+            canvas: Some("#bevy".to_owned()),
+            fit_canvas_to_parent: true,
+            prevent_default_event_handling: false,
             ..default()
-        }))
-        .add_plugins(GamePlugin)
-        .add_systems(Startup, set_window_icon)
-        .run();
+        }),
+        ..default()
+    }))
+    .add_plugins(GamePlugin)
+    .add_systems(Startup, set_window_icon)
+    .run();
 }
 
 fn set_window_icon(
