@@ -1,0 +1,20 @@
+(
+    objects: [
+        (
+            position: (0.0, -64.0),
+            kind: Platform(size: (512.0, 32.0))
+        ),
+        (
+            position: (-130.0, 100.0),
+            kind: Shape(color: Red, sides: 3, radius: 32.0)
+        ),
+        (
+            position: (0.0, 100.0),
+            kind: Shape(color: Green, sides: 4, radius: 48.0)
+        ),
+        (
+            position: (130.0, 100.0),
+            kind: Shape(color: Blue, sides: 5, radius: 64.0)
+        )
+    ]
+)

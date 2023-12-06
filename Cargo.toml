@@ -48,14 +48,19 @@ bevy = { version = "0.12.1", default-features = false, features = [
     "default_font",
     "webgl2",
 ] }
-bevy_kira_audio = { version = "0.18" }
-bevy_asset_loader = { version = "0.18" }
+bevy_kira_audio = "0.18" 
+bevy_asset_loader = "0.18"
+bevy_common_assets = { version = "0.8.0", features = ["ron"] }
+bevy_xpbd_2d = "0.3.2"
 webbrowser = { version = "0.8", features = ["hardened"] }
+serde = { version = "1.0.193", features = ["derive"] }
+rand = "0.8.5"
 
 # keep the following in sync with Bevy's dependencies
 winit = { version = "0.28.7", default-features = false }
 image = { version = "0.24", default-features = false }
-rand = "0.8.5"
+parry2d = "0.13.5"
+nalgebra = "0.32.3"
 
 [build-dependencies]
 embed-resource = "1.4"
